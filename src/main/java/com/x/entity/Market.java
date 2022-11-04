@@ -1,15 +1,11 @@
 package com.x.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-import com.x.config.typehandler.PolygonTypeHandler;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.x.utils.typehandler.PolygonTypeHandler;
 import lombok.*;
 import org.postgis.Geometry;
 
