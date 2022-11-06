@@ -8,6 +8,7 @@ public class CgPostgisDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CgPostgisDemoApplication.class, args);
+
     }
 
 }

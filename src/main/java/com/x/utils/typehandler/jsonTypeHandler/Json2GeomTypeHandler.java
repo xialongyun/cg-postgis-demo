@@ -1,4 +1,4 @@
-package com.x.utils.typehandler;
+package com.x.utils.typehandler.jsonTypeHandler;
 
 import org.geotools.geojson.geom.GeometryJSON;
 import org.locationtech.jts.geom.Geometry;

@@ -3,6 +3,9 @@ package com.x.mapper;
 import com.x.entity.Population;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PopulationMapper extends BaseMapper<Population> {
-
+    Long countPopulationByGeoJson(@Param("geom") String json);
+    List<Population> selectPopulationByGeoJson(@Param("geom") String json);
 }

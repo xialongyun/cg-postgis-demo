@@ -3,6 +3,9 @@ package com.x.mapper;
 import com.x.entity.Market;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MarketMapper extends BaseMapper<Market> {
-
+    List<Market> selectByGid(@Param("m_gid") Integer gid);
+    List<Market> selectByGeoJson(@Param("text") String json);
+    List<Market> selectMarketByGeoJson(@Param("geom") String json);
+    Integer countMarketNumByGeoJson(@Param("geom") String json);
 }

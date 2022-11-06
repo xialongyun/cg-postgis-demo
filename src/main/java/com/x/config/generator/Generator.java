@@ -27,7 +27,7 @@ public class Generator {
                             .pathInfo(Collections.singletonMap(OutputFile.xml, "E://长光/cg-postgis-demo\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("market", "nyc_buildings", "population", "spatial_ref_sys") // 设置需要生成的表名
+                    builder.addInclude("province") // 设置需要生成的表名
                             .serviceBuilder()
                             .formatServiceFileName("%sService")
                             .formatServiceImplFileName("%sServiceImpl")

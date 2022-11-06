@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x.mapper.MarketMapper">
+    <select id="selectByGid"  resultType="com.x.entity.Market">
+        SELECT * from market
+        WHERE gid = #{m_gid}
+    </select>
 
+    <select id="selectByGeoJson" resultType="com.x.entity.Market">
+        SELECT * from market
+        WHERE st_asgeojson(the_geom) = #{text}
+    </select>
+
+    <select id="selectMarketByGeoJson" resultType="com.x.entity.Market">
+        SELECT * from market
+        WHERE st_contains(st_geomfromgeojson(#{geom}), st_geomfromgeojson(st_asgeojson(the_geom)))
+
+    </select>
+
+    <select id="countMarketNumByGeoJson" resultType="java.lang.Integer">
+        SELECT  count(*) from market
+        WHERE st_contains(st_geomfromgeojson(#{geom}), st_geomfromgeojson(st_asgeojson(the_geom)))
+
+    </select>
 </mapper>

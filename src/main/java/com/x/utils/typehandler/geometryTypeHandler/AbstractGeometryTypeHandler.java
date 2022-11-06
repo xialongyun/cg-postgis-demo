@@ -1,4 +1,4 @@
-package com.x.utils.typehandler;
+package com.x.utils.typehandler.geometryTypeHandler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

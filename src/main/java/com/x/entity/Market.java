@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-import com.x.utils.typehandler.PolygonTypeHandler;
+import com.x.utils.typehandler.geometryTypeHandler.PolygonTypeHandler;
 import lombok.*;
 import org.postgis.Geometry;
 
@@ -34,6 +34,6 @@ public class Market implements Serializable {
     @TableField("bin")
     private BigInteger bin;
 
-    @TableField(typeHandler = PolygonTypeHandler.class)
-    private Geometry theGeom;
+    //@TableField(typeHandler = PolygonTypeHandler.class)
+    private Object theGeom;
 }
