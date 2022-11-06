@@ -31,6 +31,7 @@ public class Province implements Serializable {
     @TableField("name")
     private String name;
 
+
     @TableField("center")
     private Object center;
 
@@ -38,7 +39,7 @@ public class Province implements Serializable {
     private Object centroid;
 
     @TableField("childrennum")
-    private Integer childrennum;
+    private Integer children;
 
     @TableField("the_geom")
     private Object theGeom;
