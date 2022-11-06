@@ -17,4 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PopulationServiceImpl extends ServiceImpl<PopulationMapper, Population> implements PopulationService {
 
+    @Override
+    public void insertBatch(String feature) {
+
+    }
+
+    public static void main(String[] args) {
+
+    }
 }
