@@ -4,10 +4,15 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import com.x.utils.typehandler.geometryTypeHandler.MultiPolygonTypeHandler;
+import com.x.utils.typehandler.geometryTypeHandler.PointTypeHandler;
+import com.x.utils.typehandler.geometryTypeHandler.PolygonTypeHandler;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.postgis.Geometry;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -15,12 +20,14 @@ import lombok.Setter;
  * </p>
  *
  * @author X
- * @since 2022-11-06
+ * @since 2022-11-07
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Getter
 @Setter
-@TableName("province")
-@ApiModel(value = "Province对象", description = "")
+@TableName(value = "province", autoResultMap = true)
 public class Province implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,16 +38,15 @@ public class Province implements Serializable {
     @TableField("name")
     private String name;
 
-
-    @TableField("center")
+    //@TableField(typeHandler = PointTypeHandler.class)
     private Object center;
 
-    @TableField("centroid")
+    //@TableField(typeHandler = PointTypeHandler.class)
     private Object centroid;
 
-    @TableField("childrennum")
+    @TableField("children")
     private Integer children;
 
-    @TableField("the_geom")
+    @TableField(typeHandler = MultiPolygonTypeHandler.class)
     private Object theGeom;
 }

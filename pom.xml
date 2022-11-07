@@ -47,6 +47,15 @@
             <version>3.5.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatisplus-spring-boot-starter -->
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatisplus-spring-boot-starter</artifactId>-->
+<!--            <version>1.0.5</version>-->
+<!--        </dependency>-->
+
+
+
         <!--velocity模板-->
         <dependency>
             <groupId>org.apache.velocity</groupId>
@@ -139,6 +148,10 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-epsg-hsql</artifactId>
             <version>27.2</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
 
     </dependencies>

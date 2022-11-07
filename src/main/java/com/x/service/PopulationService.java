@@ -1,5 +1,6 @@
 package com.x.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.x.entity.Population;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-11-05
  */
 public interface PopulationService extends IService<Population> {
-    void insertBatch(String json);
 }

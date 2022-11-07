@@ -34,6 +34,6 @@ public class Market implements Serializable {
     @TableField("bin")
     private BigInteger bin;
 
-    //@TableField(typeHandler = PolygonTypeHandler.class)
+    @TableField(typeHandler = PolygonTypeHandler.class)
     private Object theGeom;
 }
