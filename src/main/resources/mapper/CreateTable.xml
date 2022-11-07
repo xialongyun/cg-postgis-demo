@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x.mapper.CreateTable">
-    <update id="createTable" >
-        CREATE TABLE public.#{tableName} (
+    <update id="createTable" parameterType="java.lang.String">
+
+        CREATE TABLE ${tableName} (
             adcode integer PRIMARY KEY NOT NULL,
             name varchar(2048) NOT NULL,
             children integer,
@@ -12,8 +13,10 @@
     </update>
 
     <insert id="insert" >
-        INSERT INTO #{tableName} (adcode, name, children, parent, the_geom)
+        INSERT INTO ${tableName} (adcode, name, children, parent, the_geom)
         VALUES (#{adcode}, #{name}, #{children}, #{parent}, st_asgeojson(#{the_geom}))
     </insert>
+
+
 
 </mapper>

@@ -5,4 +5,9 @@
         INSERT INTO province (adcode, name, center, centroid, children, the_geom)
         VALUES (#{adcode}, #{name}, null , null, #{children}, st_asgeojson(#{the_geom}))
     </insert>
+
+    <select id="queryNameByAdcode" resultType="java.lang.String">
+        SELECT name FROM province
+        WHERE adcode = #{adcode}
+    </select>
 </mapper>

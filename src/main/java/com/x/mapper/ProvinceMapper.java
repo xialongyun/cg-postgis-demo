@@ -24,4 +24,6 @@ public interface ProvinceMapper extends BaseMapper<Province> {
                                @Param("centroid") Object centroid,
                                @Param("children") Integer children,
                                @Param("the_geom") Object the_geom);
+
+    public String queryNameByAdcode(@Param("adcode") Integer adcode);
 }
