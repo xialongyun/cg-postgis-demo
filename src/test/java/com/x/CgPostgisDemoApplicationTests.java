@@ -5,6 +5,7 @@ import com.x.config.generator.InsertBatch;
 import com.x.entity.Market;
 import com.x.entity.Population;
 import com.x.mapper.*;
+import com.x.service.impl.CreateTableServiceImpl;
 import com.x.service.impl.ProvinceServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.io.ParseException;
@@ -29,12 +30,17 @@ class CgPostgisDemoApplicationTests {
     @Autowired
     ProvinceMapper provinceMapper;
 
+    @Autowired
+    CreateTable createTable;
+
 
 
     @Test
     void contextLoads() throws ParseException, IOException {
-        ProvinceServiceImpl provinceService = new ProvinceServiceImpl(provinceMapper);
-        provinceService.insertBatch();
+        CreateTableServiceImpl createTableService = new CreateTableServiceImpl(createTable);
+        createTableService.insertBatch();
+//        ProvinceServiceImpl provinceService = new ProvinceServiceImpl(provinceMapper);
+//        provinceService.insertBatch();
 //        QueryWrapper<Market> queryWrapper = new QueryWrapper<>();
 //        List<Market> l = marketMapper.selectByGid(1);
 //        String s = "{\"coordinates\":[[[120.903339,31.071658],[120.892817,31.087234],[120.871772,31.087234],[120.86125,31.071658],[120.871772,31.056081],[120.892817,31.056081],[120.903339,31.071658]]],\"type\":\"Polygon\"}";
