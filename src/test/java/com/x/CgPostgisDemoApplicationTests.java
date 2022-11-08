@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.x.config.generator.InsertBatch;
 import com.x.entity.Market;
 import com.x.entity.Population;
+import com.x.entity.Province;
+import com.x.entity.Region;
 import com.x.mapper.*;
 import com.x.service.impl.CreateTableServiceImpl;
 import com.x.service.impl.ProvinceServiceImpl;
@@ -17,30 +19,29 @@ import java.util.List;
 
 @SpringBootTest
 class CgPostgisDemoApplicationTests {
-
     @Autowired
     MarketMapper marketMapper;
-    @Autowired
-    NycBuildingsMapper nycBuildingsMapper;
-    @Autowired
-    PopulationMapper populationMapper;
-    @Autowired
-    SpatialRefSysMapper spatialRefSysMapper;
-
     @Autowired
     ProvinceMapper provinceMapper;
 
     @Autowired
     CreateTable createTable;
 
+    @Autowired
+    RegionMapper regionMapper;
 
 
     @Test
     void contextLoads() throws ParseException, IOException {
-        CreateTableServiceImpl createTableService = new CreateTableServiceImpl(createTable);
-        createTableService.insertBatch();
-//        ProvinceServiceImpl provinceService = new ProvinceServiceImpl(provinceMapper);
-//        provinceService.insertBatch();
+        String s = "{\"type\":Point,\"coordinates\":[126.47152,43.918785]}";
+        System.out.println(regionMapper.queryPoint("province", Double.parseDouble("126.47152"), Double.parseDouble("43.918785")));
+//        Region region = regionMapper.queryRegionByName("province", "吉林省");
+//        System.out.println(region);
+//        List<Province> l = provinceMapper.queryAllProvinces();
+//        l.forEach(System.out::println);
+
+//        CreateTableServiceImpl createTableService = new CreateTableServiceImpl(createTable);
+//        createTableService.insertBatch();
 //        QueryWrapper<Market> queryWrapper = new QueryWrapper<>();
 //        List<Market> l = marketMapper.selectByGid(1);
 //        String s = "{\"coordinates\":[[[120.903339,31.071658],[120.892817,31.087234],[120.871772,31.087234],[120.86125,31.071658],[120.871772,31.056081],[120.892817,31.056081],[120.903339,31.071658]]],\"type\":\"Polygon\"}";

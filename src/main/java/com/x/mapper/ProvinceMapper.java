@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -16,14 +18,6 @@ import org.springframework.stereotype.Component;
  * @since 2022-11-07
  */
 @Mapper
-@Component
 public interface ProvinceMapper extends BaseMapper<Province> {
-    public void insertProvince(@Param("adcode") Integer adcode,
-                               @Param("name") String name,
-                               @Param("center") Object center,
-                               @Param("centroid") Object centroid,
-                               @Param("children") Integer children,
-                               @Param("the_geom") Object the_geom);
-
-    public String queryNameByAdcode(@Param("adcode") Integer adcode);
+    List<Province> queryAllProvinces();
 }

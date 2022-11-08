@@ -5,7 +5,9 @@
 
         CREATE TABLE ${tableName} (
             adcode integer PRIMARY KEY NOT NULL,
+            index integer NOT NULL,
             name varchar(2048) NOT NULL,
+            level varchar(2048) NOT NULL,
             children integer,
             parent integer,
             the_geom public.geometry
@@ -13,9 +15,24 @@
     </update>
 
     <insert id="insert" >
-        INSERT INTO ${tableName} (adcode, name, children, parent, the_geom)
-        VALUES (#{adcode}, #{name}, #{children}, #{parent}, st_asgeojson(#{the_geom}))
+        INSERT INTO ${tableName} (adcode, index, name, level, children, parent, the_geom)
+        VALUES (#{adcode}, #{index}, #{name}, #{level}, #{children}, #{parent} ,st_asgeojson(#{the_geom}))
     </insert>
+
+    <select id="queryNameByAdcode" resultType="java.lang.String">
+        SELECT name FROM province
+        WHERE adcode = #{adcode}
+    </select>
+
+    <select id="isTableExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT  COUNT(*) FROM information_schema.tables
+        WHERE #{tableName} = table_name
+    </select>
+
+    <select id="isKeyExist"  resultType="java.lang.Integer">
+        SELECT  COUNT(*) FROM ${tableName}
+        WHERE adcode = #{adcode}
+    </select>
 
 
 

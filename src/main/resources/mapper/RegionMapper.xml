@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.x.mapper.RegionMapper">
+<!--    <resultMap id="queryRegionList" type="com.x.entity.Region">-->
+<!--        <result column="provinceCode" property="code"></result>-->
+<!--        <result column="provinceName" property="name"></result>-->
+<!--        <result column="provinceParent" property="parent"></result>-->
+<!--        <result column="the_geom_province" property="the_geom"></result>-->
+<!--        <collection property="children" javaType="java.util.List" ofType="com.x.entity.Region">-->
+<!--            <result column="cityCode" property="code"></result>-->
+<!--            <result column="cityName" property="name"></result>-->
+<!--            <result column="cityParent" property="parent"></result>-->
+<!--            <result column="the_geom_city" property="the_geom"></result>-->
+<!--                <collection property="children" javaType="java.util.List" ofType="com.x.entity.Region">-->
+<!--                    <result column="districtCode" property="code"></result>-->
+<!--                    <result column="districtName" property="name"></result>-->
+<!--                    <result column="districtParent" property="parent"></result>-->
+<!--                    <result column="the_geom_district" property="the_geom"></result>-->
+<!--                </collection>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <select id="queryRegion" resultMap="queryRegionList">-->
+<!--        SELECT province.adcode AS provinceCode-->
+<!--               -->
+<!--        FROM province,-->
+<!--             -->
+
+<!--    </select>-->
+
+    <select id="queryRegionByAdcode" resultType="com.x.entity.Region">
+        SELECT *
+        FROM ${tableName}
+        WHERE adcode = #{adcode}
+    </select>
+
+    <select id="queryRegionByName" resultType="com.x.entity.Region">
+        SELECT *
+        FROM ${tableName}
+        WHERE name = #{name}
+    </select>
+
+    <select id="queryRegionList" resultType="com.x.entity.Region">
+        SELECT *
+        FROM ${tableName}
+        WHERE parent = #{adcode}
+    </select>
+
+    <select id="queryRegionListByName" resultType="com.x.entity.Region">
+        SELECT *
+        FROM ${tableName}
+        WHERE name = #{name}
+    </select>
+
+    <select id="isRegionProvince" resultType="com.x.entity.Region">
+        SELECT *
+        FROM province
+        WHERE name = #{name}
+    </select>
+
+    <select id="queryRegionCityList" resultType="com.x.entity.Region">
+        SELECT *
+        WHERE (SELECT adcode
+              FROM province)
+
+    </select>
+
+    <select id="queryPoint" resultType="com.x.entity.Region">
+        SELECT *
+        FROM ${tableName}
+        WHERE st_contains(st_geomfromgeojson(st_asgeojson(the_geom)), st_geomfromtext('POINT(${x} ${y})', 4326))
+    </select>
+
+
+</mapper>

@@ -35,17 +35,20 @@ public class Province implements Serializable {
     @TableId("adcode")
     private Integer adcode;
 
+    @TableField("index")
+    private Integer index;
+
     @TableField("name")
     private String name;
 
-    //@TableField(typeHandler = PointTypeHandler.class)
-    private Object center;
-
-    //@TableField(typeHandler = PointTypeHandler.class)
-    private Object centroid;
+    @TableField("level")
+    private String level;
 
     @TableField("children")
     private Integer children;
+
+    @TableField("parent")
+    private Integer parent;
 
     @TableField(typeHandler = MultiPolygonTypeHandler.class)
     private Object theGeom;

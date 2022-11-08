@@ -3,8 +3,11 @@ package com.x.service;
 import com.alibaba.fastjson.JSONObject;
 import com.x.entity.Province;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.x.mapper.ProvinceMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,10 +17,7 @@ import org.springframework.stereotype.Service;
  * @author X
  * @since 2022-11-07
  */
-@Service
-@Component
+
 public interface ProvinceService extends IService<Province> {
-//    static void insert(JSONObject feature) {
-//
-//    }
+    List<Province> queryAllProvinces();
 }

@@ -13,10 +13,11 @@ import com.x.service.CreateTableService;
 import com.x.service.MarketService;
 import com.x.utils.json.ReadJsonFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+@Service
 public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> implements CreateTableService {
     @Autowired
     CreateTable createTable;
@@ -31,30 +32,32 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
         createTable.createTable(tableName);
     }
 
-    public void insert(JSONObject feature) {
+        public void insert(JSONObject feature) {
         JSONObject properties = JSONObject.parseObject(feature.get("properties").toString());
         Integer adcode = Integer.parseInt(properties.get("adcode").toString());
+        Integer index = 0;
+        if (properties.containsKey("subFeatureIndex")) {
+            index = Integer.parseInt(properties.get("subFeatureIndex").toString());
+        }
         String name = properties.get("name").toString();
-        Integer children = Integer.parseInt(properties.get("childrenNum").toString());
+        String level = properties.get("level").toString();
 
-        System.out.println(adcode);
-        System.out.println(name);
-        System.out.println(children);
-
-        if (children != 0) {
-            System.out.println("开始创建");
-            createTableByName("t_" + adcode);
-            System.out.println("created:" + adcode);
+        Integer children = null;
+        if (properties.containsKey("childrenNum")) {
+            children = Integer.parseInt(properties.get("childrenNum").toString());
         }
 
         Integer parent = JSONObject.parseObject(properties.get("parent").toString()).getInteger("adcode");
-        System.out.println(parent);
-
         String the_geom = feature.get("geometry").toString();
+        String tableName = level + "_" + parent;
 
-        System.out.println(the_geom);
-        String tableName = null;
-        createTable.insert("t_" + parent, adcode, name, children, parent, the_geom);
+        if (createTable.isTableExist(tableName) == 0) {
+            createTableByName(tableName);
+        }
+        if (createTable.isKeyExist(tableName, adcode) == 0) {
+            createTable.insert(tableName, adcode, index, name, level, children, parent, the_geom);
+        }
+
     }
 
     public void insertBatch() {
@@ -63,12 +66,28 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
             String collection = ReadJsonFile.readJsonFromFile(file);
             JSONObject jsonObject = JSONObject.parseObject(collection);
             JSONArray features = jsonObject.getJSONArray("features");
-
+            System.out.println(file);
             for (Object f : features) {
                 JSONObject feature = JSONObject.parseObject(f.toString());
                 insert(feature);
             }
         }
+    }
+
+    public void insertProvinceBatch() {
+        ReadJsonFile readJsonFile = new ReadJsonFile();
+        String collection = readJsonFile.readJsonFromFile("src/main/resources/chinaGeo/中国.json");
+        JSONObject jsonObject = JSONObject.parseObject(collection);
+        JSONArray features = jsonObject.getJSONArray("features");
+
+        for (Object f : features) {
+            JSONObject feature = JSONObject.parseObject(f.toString());
+            insert(feature);
+        }
+    }
+
+    public void createDistrictTable() {
+
     }
 
     public void createCityTable(){
@@ -81,7 +100,11 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
             JSONObject feature = JSONObject.parseObject(f.toString());
             JSONObject properties = JSONObject.parseObject(feature.get("properties").toString());
             Integer adcode = Integer.parseInt(properties.get("adcode").toString());
-            createTableByName("t_" + adcode.toString());
+            createTableByName("city_" + adcode.toString());
         }
+    }
+
+    public void createProvince() {
+        createTableByName("province_100000");
     }
 }

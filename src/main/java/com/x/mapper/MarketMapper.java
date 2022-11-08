@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Mapper
 @Component
+@Repository
 public interface MarketMapper extends BaseMapper<Market> {
     List<Market> selectByGid(@Param("m_gid") Integer gid);
     List<Market> selectByGeoJson(@Param("text") String json);
