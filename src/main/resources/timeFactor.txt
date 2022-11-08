@@ -1,0 +1,14 @@
+CREATE FUNCTION timeFactor(p integer) RETURNS integer AS $$
+BEGIN
+IF p > 7
+THEN
+return 1;
+ELSEIF p < 3
+THEN return 10;
+ELSE
+return 5;
+END IF;
+RETURN result;
+END;
+$$
+LANGUAGE PLPGSQL;

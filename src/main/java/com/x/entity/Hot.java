@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * <p>
@@ -16,6 +15,9 @@ import lombok.Setter;
  * @author X
  * @since 2022-11-08
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Getter
 @Setter
 @TableName("hot")

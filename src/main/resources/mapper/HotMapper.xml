@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x.mapper.HotMapper">
-
+    <select id="queryHotData" resultType="com.x.entity.Hot">
+        SELECT *, cast(date_part('day', (now()::timestamp - gmt_createtime::timestamp)) AS INTEGER)
+        FROM hot
+        WHERE st_contains(st_makeenvelope(${l_x},${l_y},${r_x},${r_y}, 4326), st_geomfromgeojson(st_asgeojson))
+        ORDER BY (1 + cast(read_amount as integer) + cast(comment_amount as integer) + cast(share_amount as integer) + cast(focus_amount as integer))
+        * cast(hot_level as integer) DESC
+    </select>
 </mapper>
