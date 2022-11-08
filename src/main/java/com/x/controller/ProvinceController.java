@@ -27,6 +27,10 @@ public class ProvinceController {
     @Autowired
     ProvinceMapper provinceMapper;
 
+    /**
+     * 查询全部省份
+     * @return 返回全部省份
+     */
     @GetMapping("/getAllProvince")
     public JSONObject getAllProvince() {
         ProvinceServiceImpl provinceService = new ProvinceServiceImpl(provinceMapper);

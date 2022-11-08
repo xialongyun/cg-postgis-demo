@@ -25,7 +25,7 @@ public class HotServiceImpl extends ServiceImpl<HotMapper, Hot> implements HotSe
     public HotServiceImpl(HotMapper hotMapper) {
         this.hotMapper = hotMapper;
     }
-
+    @Override
     public List<Hot> queryHotData(Double l_x, Double l_y, Double r_x, Double r_y) {
         return hotMapper.queryHotData(l_x,l_y,r_x,r_y);
     }

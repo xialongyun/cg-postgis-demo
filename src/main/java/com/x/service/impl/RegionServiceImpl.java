@@ -24,21 +24,27 @@ public class RegionServiceImpl extends ServiceImpl<RegionMapper, Region> impleme
         this.regionMapper = regionMapper;
     }
 
+    @Override
     public Region queryRegionByAdcode(String tableName, Integer adcode) {
         return regionMapper.queryRegionByAdcode(tableName, adcode);
     }
 
+    @Override
     public Region queryRegionByName(String tableName, String name) {
         return regionMapper.queryRegionByName(tableName, name);
     }
 
+    @Override
     public List<Region> queryRegionList(String tableName, Integer adcode) {
         return regionMapper.queryRegionList(tableName, adcode);
     }
+
+    @Override
     public List<Region> queryRegionListByName(String tableName, String name) {
         return regionMapper.queryRegionListByName(tableName, name);
     }
 
+    @Override
     public Region queryPoint(String tableName, Double x, Double y) {
         return regionMapper.queryPoint(tableName, x, y);
     }

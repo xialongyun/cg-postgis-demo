@@ -4,6 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ReadJsonFile {
+    /**
+     * Json文件解析
+     * @param fileName 文件名
+     * @return JSON的String形式
+     */
     public static String readJsonFromFile(String fileName) {
         String jsonStr = "";
         try {
@@ -24,6 +29,12 @@ public class ReadJsonFile {
             return null;
         }
     }
+
+    /**
+     * 批量JSON解析
+     * @param path 文件夹路径
+     * @return 文件名列表
+     */
     public static ArrayList<String> getJsonFiles(String path) {
         ArrayList<String> files = new ArrayList<String>();
         File file = new File(path);

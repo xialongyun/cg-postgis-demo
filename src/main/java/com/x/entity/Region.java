@@ -17,7 +17,9 @@ import java.util.List;
 //level varchar(2048),
 //the_geom public.geometry);
 
-
+/**
+ * 统一处理省市区的数据
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

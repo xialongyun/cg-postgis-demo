@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-11-05
  */
 public interface MarketService extends IService<Market> {
-
+    Integer countMarket(String s);
 }

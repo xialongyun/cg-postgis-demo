@@ -27,12 +27,17 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
     public CreateTableServiceImpl(CreateTable createTable) {
         this.createTable = createTable;
     }
-
+    @Override
     public void createTableByName(String tableName) {
         createTable.createTable(tableName);
     }
 
-        public void insert(JSONObject feature) {
+    /**
+     * 表中插入数据
+     * @param feature jsonArray中的各个级别的数据
+     */
+    @Override
+    public void insert(JSONObject feature) {
         JSONObject properties = JSONObject.parseObject(feature.get("properties").toString());
         Integer adcode = Integer.parseInt(properties.get("adcode").toString());
         Integer index = 0;
@@ -60,6 +65,10 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
 
     }
 
+    /**
+     * 批量插入市区级数据
+     */
+    @Override
     public void insertBatch() {
         ArrayList<String> files = ReadJsonFile.getJsonFiles("src/main/resources/chinaGeo/");
         for (String file:files) {
@@ -74,6 +83,10 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
         }
     }
 
+    /**
+     * 批量插入省级数据
+     */
+    @Override
     public void insertProvinceBatch() {
         ReadJsonFile readJsonFile = new ReadJsonFile();
         String collection = readJsonFile.readJsonFromFile("src/main/resources/chinaGeo/中国.json");
@@ -86,10 +99,10 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
         }
     }
 
-    public void createDistrictTable() {
-
-    }
-
+    /**
+     * 创建市级表
+     */
+    @Override
     public void createCityTable(){
         ReadJsonFile readJsonFile = new ReadJsonFile();
         String collection = readJsonFile.readJsonFromFile("src/main/resources/chinaGeo/中国.json");
@@ -104,7 +117,11 @@ public class CreateTableServiceImpl extends ServiceImpl<CreateTable, Table> impl
         }
     }
 
+    /**
+     * 创建省级表
+     */
+    @Override
     public void createProvince() {
-        createTableByName("province_100000");
+        createTableByName("province");
     }
 }

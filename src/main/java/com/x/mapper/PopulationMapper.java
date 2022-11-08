@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -19,6 +20,6 @@ import java.util.List;
 @Mapper
 @Component
 public interface PopulationMapper extends BaseMapper<Population> {
-    Long countPopulationByGeoJson(@Param("geom") String json);
+    BigInteger countPopulationByGeoJson(@Param("geom") String json);
     List<Population> selectPopulationByGeoJson(@Param("geom") String json);
 }
