@@ -3,6 +3,7 @@
 数据库相关：
 1. 使用PostgreSQL数据库从nyc.bak文件中恢复数据，生成第一个数据库（里面有市场数据表、人口数据表、建筑数据表。
    备份指令
+恢复数据库前，需要添加postgis函数库，以支持空间数据和空间函数。
 ```
 pg_dump -h localhost -U postgres databasename > C:\databasename.bak
 ```

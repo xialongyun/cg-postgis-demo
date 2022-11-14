@@ -13,7 +13,7 @@
 
     <select id="selectMarketByGeoJson" resultType="com.x.entity.Market">
         SELECT * from market
-        WHERE st_containsproperly(st_geomfromgeojson(#{geom}), st_geomfromgeojson(st_asgeojson(the_geom)))
+        WHERE st_contains(st_geomfromgeojson(#{geom}), st_geomfromgeojson(st_asgeojson(the_geom)))
 
     </select>
 

@@ -36,8 +36,22 @@ public class RegionController {
      * @param name 省或者市名称
      * @return
      */
-    @GetMapping("/queryRegion/{name}")
-    public JSONObject queryRegion(@PathVariable String name) {
+    @GetMapping("/queryRegionByPath/{name}")
+    public JSONObject queryRegionByPath(@PathVariable String name) {
+        return query(name);
+    }
+
+    /**
+     * 输入省或者市名称，能够查询该辖区下所有下级行政区划名字列表
+     * @param name 省或者市名称
+     * @return
+     */
+    @GetMapping("/queryRegion")
+    public JSONObject queryRegion(String name) {
+        return query(name);
+    }
+
+    private JSONObject query(String name) {
         RegionServiceImpl regionService = new RegionServiceImpl(regionMapper);
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();

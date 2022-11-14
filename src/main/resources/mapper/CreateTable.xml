@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x.mapper.CreateTable">
     <update id="createTable" parameterType="java.lang.String">
-
         CREATE TABLE ${tableName} (
             adcode integer PRIMARY KEY NOT NULL,
             index integer NOT NULL,
@@ -33,7 +32,5 @@
         SELECT  COUNT(*) FROM ${tableName}
         WHERE adcode = #{adcode}
     </select>
-
-
 
 </mapper>
